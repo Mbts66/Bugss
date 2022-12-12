@@ -1,0 +1,26 @@
+<%# From fields : assigned to, status %>
+
+
+<h1 id="signup-h1">Edit Bug Status</h1>
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+        <%= form_with(model: @bug, local: true) do |f| %>
+
+            <%= f.label :assigned_to %>
+            <%#= f.select :assigned_to, class: 'form-control' %>
+            <%#= f.select :assigned_to,  options_for_select(@users.collect{|user| [user.name,user.id]}) ,{ class: 'form-control'} %> 
+            <%= f.select :assigned_to,  options_for_select(@users.collect{|user| [user.name]}) ,{ class: 'form-control'} %> 
+            <%#= f.select :assigned_to, options_for_select(@users.pluck({|user| [user.name,user.id]}), @user.counsellor_type.id), {} , { class: "form-control", disabled: true} %>
+
+            <%= f.label :status %>
+            <%#= f.text_field :status, class: 'form-control' %>
+             <%= f.select :status, options_for_select({pending: 'pending',  started: 'started',fixed: 'fixed'})%>
+
+            <%# <%= f.select :priority, ['High', 'Medium','Low'],class: 'form-control' %>
+
+            <%= f.submit "Submit", class: "btn btn-primary" %>
+        <% end %>
+    </div>
+</div>
+
+

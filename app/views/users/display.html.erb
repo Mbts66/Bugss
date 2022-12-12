@@ -1,0 +1,16 @@
+<table class="table table-striped ">
+    <thead class="thead-dark">
+        <th scope="col">Id</th>
+        <th scope="col">Name</th>
+        <th scope="col">Role</th>
+    </thead>
+    <tbody>
+            <% @user.each do |u| %>
+              <tr>
+                  <td><%= u.id %></td>
+                  <td><%= u.name %></td>
+                  <td><%= u.role %></td>
+              </tr>
+            <%end%>
+    </tbody>
+</table>

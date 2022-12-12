@@ -1,0 +1,24 @@
+<table class="table table-bordered">
+    <thead class="thead-dark">
+        <th scope="col">Name</th>
+        <th scope="col">Description</th>
+        <th scope="col">Status</th>
+        <th scope="col">Assigned To</th>
+        <th scope="col">Edit</th>
+    </thead>
+    <tbody>
+            <% @bugs.each do |bug| %>
+            <tr>
+                <td><%= bug.title %></td>
+                <td><%= bug.description %></td>
+                <td><%= bug.status %></td>
+                <td><%= show_assigned_user(bug.assigned_to) %></td>
+                <td><%= link_to "Edit", edit_bug_path(bug.id) %></td>
+
+
+
+                <td><%= link_to "Show", bug_path(bug.id) if @current_user.role != 'manager' %></td>
+            </tr>
+            <%end%>
+    </tbody>
+</table>

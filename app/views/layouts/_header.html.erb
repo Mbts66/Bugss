@@ -1,0 +1,47 @@
+<%# <header class="navbar navbar-fixed-top navbar-inverse"> %>
+<%# <div class="container"> %>
+<%# <%= link_to "Bugzilla", home_path, id: "logo" %> %>
+<%# <nav> %>
+<%# <ul class="nav navbar-nav navbar-right"><li><%= link_to "Home",home_path, class: "set-color"%></li> %>
+<%# <li><%= link_to "Log in",login_path, class: "set-color"%></li> %>
+<%# <li><%= link_to "Sign up", signup_path, class: "set-color"%></li> %>
+<%# </ul> %>
+<%# </nav> %>
+<%# </div> %>
+<%# </header> %>
+
+
+<header class="navbar navbar-fixed-top navbar-inverse">
+    <div class="container">
+        <%= link_to "Bugzilla", home_path, id: "logo" %><nav>
+        <ul class="nav navbar-nav navbar-right">
+            <li><%= link_to "Home", home_path %></li>
+
+            <%# <li><%= link_to "Bugs", new_bug %></li> %>
+            <% if logged_in? %>
+            <% if @current_user.role != 'developer' %>
+                <li><%= link_to "Create New Bug", new_bug_url %></li>
+            <%end%>
+            <li><%= link_to "Show Bugs", bugs_path %></li>
+
+            <li><%= link_to "Users", display_path %></li>
+            <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Account <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+                <li><%= link_to "Profile", current_user %></li>
+                <li><%= link_to "Settings", "#" %></li>
+                <li class="divider"></li>
+                <li>
+                <%= link_to "Log out", logout_path, method:"delete" %>
+                </li>
+            </ul>
+            </li>
+            <% else %>
+            <li><%= link_to "Log in", login_path %></li>
+            <% end %>
+        </ul>
+        </nav>
+    </div>
+</header>
+

@@ -1,0 +1,57 @@
+<%# Bug detail %>
+
+<%# <ul>  %>
+<%# @bug.map do |b| %>
+  <%# <li> %>
+    <%#= b.title %>
+    <%#= b.description %>
+    <%#= b.priority %>
+    <%#= b.estimated_days %>
+    <%#= b.status %>
+    <%#= b.title %>
+    <%#= b.assigned_to %>
+    <%#= b.assigned_to %>
+  <%# </li> %>
+<%#end  %>
+<%# </ul> %>
+
+<table class="table">
+    <thead>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Status</th>
+        <th>Assigned To</th>
+
+    </thead>
+    <tbody>
+            <tr>
+                <td><%= @bug.id %></td>
+                <td><%= @bug.title %></td>
+                <td><%= @bug.description %></td>
+                <td><%= @bug.status %></td>
+                <td><%= @bug.user_id %></td>
+
+            </tr>
+    </tbody>
+</table>
+
+ <% if @current_user.role == 'developer' %>
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <%= form_with(scope: :comment, url: comment_path, method: :post, local: true) do |c| %>
+
+                <%= c.label :'Enter your comment here' %>
+                <%= c.text_field :description, class: 'form-control' %>
+                <%= c.hidden_field :user_id, value: @current_user.id%>
+                <%= c.hidden_field :bug_id, value: @bug.id%>
+
+
+
+                <%= %>
+
+                <%= c.submit "Submit", class: "btn btn-primary" %>
+            <% end %>
+        </div>
+    </div>
+  <% end %>

@@ -1,0 +1,44 @@
+<%# Form fields: name,des,priority (l,h,n), estimated_days, assigned to, status (by_default:pending),  %>
+
+
+<h1 id="signup-h1">Bug</h1>
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+        <%= form_with(model: @bug, local: true) do |f| %>
+            <%= f.hidden_field :user_id, value: @current_user.id %>
+            <%= f.label :Title %>
+            <%= f.text_field :title, class: 'form-control' %>
+
+            <%= f.label :Description %>
+            <%= f.text_field :description, class: 'form-control' %>
+
+            <%= f.label :image %>
+            <%= f.file_field :image, class: 'form-control' %>
+
+
+<%#
+            <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Profile <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+                <li><%= "High" %>
+                <%#= "Low" %>
+                <%#= "Medium" %>
+            <%# </ul> %>
+            <%# </li>  %>
+
+
+            <%= f.label :assigned_to, class: 'form-control' %>
+            <%= f.select :assigned_to,  options_for_select(@users.collect{|user| [user.name,user.id]}) ,{ class: 'form-control'} %>
+            <%#= f.select :assigned_to, options_for_select(User.pluck(:name, :id), @users.role.id), {} , { class: "form-control", disabled: true} %>
+            <%#= f.select :counsellor_type_id, options_for_select(CounsellorType.pluck(:name, :id), @user.counsellor_type.id), {} , { class: "form-control", disabled: true} %>
+
+
+            <%= f.label :status, class: 'form-control' %>
+            <%# <%= f.text_field :assigned_to, class: 'form-control' %>
+            <%= f.select :status, options_for_select({pending: 'pending',  started: 'started',fixed: 'fixed'})%>
+
+            <%= f.submit "Create Bug", class: "btn btn-primary" %>
+        <% end %>
+    </div>
+</div>
