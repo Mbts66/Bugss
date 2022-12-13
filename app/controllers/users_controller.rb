@@ -1,11 +1,13 @@
 class UsersController < ApplicationController
   before_action :current_user
+  before_action :authenticate_user
+
   def home
     # @user = User.all
     # puts(@user)
   end
 
-  def display
+  def show_users
     @user = User.all
     puts(@user)
   end
@@ -21,7 +23,6 @@ class UsersController < ApplicationController
     # byebug
     @user = User.find(params[:id])
     authorize! :update, @user
-
   end
 
   def new
@@ -36,20 +37,26 @@ class UsersController < ApplicationController
     @user = User.create(user_params)
     if @user
       log_in @user
-      session[:user_id]=@user.id
-
+      session[:user_id] = @user.id
       flash[:success] = "Welcome to the Sample App!"
       redirect_to @user
     else
-      render 'new'
+      render "new"
     end
   end
 
-
-
   private
-      def user_params
-        params[:user][:role] = params[:user][:role].to_i
-        params.require(:user).permit(:id, :name, :email, :role, :is_admin, :password,:password_confirmation)
-      end
+
+  def user_params
+    params[:user][:role] = params[:user][:role].to_i
+    params.require(:user).permit(
+      :id,
+      :name,
+      :email,
+      :role,
+      :is_admin,
+      :password,
+      :password_confirmation
+    )
+  end
 end

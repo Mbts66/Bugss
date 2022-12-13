@@ -22,7 +22,7 @@ Rails.application.routes.draw do
 
   # get '/show', to: 'users#show'
 
-  get '/display', to: 'users#display'
+  get '/show_users', to: 'users#show_users'
 
   # get '/bug', to: 'users#bug'
   post '/comment',to: 'comments#create'
