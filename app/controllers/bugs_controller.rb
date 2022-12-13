@@ -78,7 +78,8 @@ class BugsController < ApplicationController
       :assigned_to,
       :estimated_days,
       :status,
-      :user_id
+      :user_id,
+      :image
     )
   end
 end

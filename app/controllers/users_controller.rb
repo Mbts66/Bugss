@@ -1,17 +1,17 @@
 class UsersController < ApplicationController
-  before_action :current_user 
+  before_action :current_user
   def home
-    # @user = User.all   
+    # @user = User.all
     # puts(@user)
   end
 
   def display
-    @user = User.all   
+    @user = User.all
     puts(@user)
   end
 
   # def login
-    
+
   # end
 
   def signup
@@ -23,7 +23,7 @@ class UsersController < ApplicationController
     authorize! :update, @user
 
   end
-  
+
   def new
     @user = User.new
     @user.save
@@ -36,7 +36,7 @@ class UsersController < ApplicationController
     @user = User.create(user_params)
     if @user
       log_in @user
-      # session[:user_id]=@user.id
+      session[:user_id]=@user.id
 
       flash[:success] = "Welcome to the Sample App!"
       redirect_to @user

@@ -36,6 +36,8 @@
     </tbody>
 </table>
 
+<%= image_tag(url_for(@bug.image)) if @bug.image.present? %>
+
  <% if @current_user.role == 'developer' %>
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
